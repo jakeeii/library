@@ -403,6 +403,17 @@ header {
 .card {
   background-color: white;
   width: auto;
-  height: 350px;
+  height: 300px;
   border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.title,
+.author,
+.numPages {
+  align-self: center;
+  justify-self: center;
 }
