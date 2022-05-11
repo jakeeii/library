@@ -1,6 +1,11 @@
-newBookBtn = document.querySelector('.newbookbtn')
-bookForm = document.querySelector('#bookform')
-closeBtn = document.querySelector('.closebtn')
+const newBookBtn = document.querySelector('.newbookbtn')
+const bookForm = document.querySelector('#bookform')
+const closeBtn = document.querySelector('.closebtn')
+const title = document.querySelector('#title')
+const author = document.querySelector('#author')
+const numpages = document.querySelector('#numpages')
+const alreadyRead = document.querySelector('#isread')
+const submitBtn = document.querySelector('.submit')
 
 const HP = new Book('Harry Potter: Prisoner of Azkaban', 'J.K. Rowling', 317, true)
 const LOTR = new Book('Lord of the Rings', 'J.R.R. Tolkien', 347, false)
@@ -20,6 +25,7 @@ function addTolibrary(book) {
 
 function displayCards(array) {
   let content = document.querySelector('.content')
+  content.textContent = ''
   array.forEach(book => {
     let card = document.createElement('div')
     card.classList.add('card')
@@ -46,20 +52,31 @@ function displayCards(array) {
   })
 }
 
-function openForm() {
-  bookForm.style.display = "block"
-}
-
-function closeForm() {
-  bookForm.style.display = "none"
+function clearFormValues() {
+  title.value = ''
+  author.value = ''
+  numpages.value = ''
+  alreadyRead.checked = false
 }
 
 newBookBtn.addEventListener('click', () => {
   bookForm.classList.add('active')
+  clearFormValues()
 })
 
 closeBtn.addEventListener('click', () => {
   bookForm.classList.remove('active')
 })
+
+submitBtn.addEventListener('click', () => {
+  let book = new Book(title.value, author.value, numpages.value)
+  if (alreadyRead.checked) {
+    book.isRead = true
+  }
+  addTolibrary(book)
+  bookForm.classList.remove('active')
+  displayCards(myLibrary)
+})
+
 
 displayCards(myLibrary)
