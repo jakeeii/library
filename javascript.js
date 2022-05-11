@@ -1,9 +1,13 @@
+newBookBtn = document.querySelector('.newbookbtn')
+bookForm = document.querySelector('#bookform')
+closeBtn = document.querySelector('.closebtn')
+
 const HP = new Book('Harry Potter: Prisoner of Azkaban', 'J.K. Rowling', 317, true)
 const LOTR = new Book('Lord of the Rings', 'J.R.R. Tolkien', 347, false)
 
 let myLibrary = [HP, LOTR]
 
-function Book(title, author, numPages, isRead) {
+function Book(title, author, numPages, isRead = false) {
   this.title = title
   this.author = author
   this.numPages = numPages
@@ -41,5 +45,21 @@ function displayCards(array) {
     content.appendChild(card)
   })
 }
+
+function openForm() {
+  bookForm.style.display = "block"
+}
+
+function closeForm() {
+  bookForm.style.display = "none"
+}
+
+newBookBtn.addEventListener('click', () => {
+  bookForm.classList.add('active')
+})
+
+closeBtn.addEventListener('click', () => {
+  bookForm.classList.remove('active')
+})
 
 displayCards(myLibrary)

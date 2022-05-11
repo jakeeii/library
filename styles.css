@@ -378,6 +378,14 @@ template {
   display: none;
 }
 
+
+
+/* MY CSS */
+
+:root {
+  --hover-green: rgb(100, 233, 95);
+}
+
 body {
   display: grid;
   grid-template-rows: 1fr 5fr;
@@ -393,8 +401,8 @@ header {
 }
 
 .content {
-  background-color: lightgray;
-  padding: 80px;
+  background-color: rgb(239, 241, 242);
+  padding: 120px 50px 50px 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 75px;
@@ -416,4 +424,106 @@ header {
 .numPages {
   align-self: center;
   justify-self: center;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.container > * {
+  width: 300px;
+}
+
+.container > button {
+  border-radius: 10px;
+  border: none;
+  padding: 8px;
+  background-color: lightgreen;
+}
+
+.container > button:hover {
+  background-color: var(--hover-green);
+}
+
+.newbookbtn {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: rgb(223, 222, 222);
+  font-weight: bold;
+}
+
+.newbookbtn:hover {
+  background-color: rgb(206, 206, 206);
+  cursor: pointer;
+}
+
+.form-popup {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.25);
+  background-color: rgb(236, 250, 255);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid black;
+  transition: top 0ms ease-in-out 200ms,
+              opacity 200ms ease-in-out 0ms,
+              transform 200ms ease-in-out 0ms;
+}
+
+.form-popup.active {
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms,
+              opacity 200ms ease-in-out 0ms,
+              transform 200ms ease-in-out 0ms;
+}
+
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.closebtn:hover {
+  background-color: rgb(216, 216, 216);
+}
+
+.form-popup h3 {
+  text-align: center;
+}
+
+#bookform input[type=text] {
+  border-radius: 6px;
+  border: none;
+  padding: 8px;
+}
+
+.check-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px 0;
 }
