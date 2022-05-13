@@ -384,7 +384,16 @@ template {
 
 :root {
   --hover-green: rgb(100, 233, 95);
-  --background-gray: rgb(239, 241, 242);
+  --hover-red: rgb(255, 118, 118);
+  --alabaster: #E8EBE4;
+  --light-gray: #D2D5DD;
+  --lavender-gray: #B8BACF;
+  --blue-bell: #999AC6;
+  --xanadu: #798071;
+}
+
+* {
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -398,9 +407,20 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
-  font-weight: bold;
-  background-color: white;
+  font-size: 60px;
+  font-weight: 700;
+  background-color: var(--blue-bell);
+  color: var(--alabaster);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.mid-section {
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: center;
 }
 
 .content {
@@ -408,10 +428,11 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 75px;
+  background-color: var(--light-gray);
 }
 
 .card {
-  background-color: white;
+  background-color: var(--alabaster);
   width: auto;
   height: 300px;
   border-radius: 8px;
@@ -457,6 +478,8 @@ h3 {
   border: none;
   padding: 8px;
   background-color: lightgreen;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .container > button:hover {
@@ -476,13 +499,14 @@ h3 {
   margin: 30px 0;
   border-radius: 10px;
   border: 1px solid black;
-  background-color: rgb(223, 222, 222);
+  background-color: var(--alabaster);
   font-weight: bold;
 }
 
 .newbookbtn:hover {
-  background-color: rgb(206, 206, 206);
+  background-color: var(--xanadu);
   cursor: pointer;
+  color: white;
 }
 
 .form-popup {
@@ -491,7 +515,7 @@ h3 {
   left: 50%;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1.25);
-  background-color: rgb(236, 250, 255);
+  background-color: var(--blue-bell);
   padding: 18px;
   border-radius: 12px;
   border: 1px solid black;
@@ -525,7 +549,7 @@ h3 {
 }
 
 .closebtn:hover {
-  background-color: rgb(216, 216, 216);
+  background-color: var(--xanadu);
 }
 
 .form-popup h3 {
@@ -542,14 +566,23 @@ h3 {
   display: flex;
   justify-content: space-evenly;
   padding: 12px 0;
+  font-weight: 500;
 }
 
 .isRead.notread {
   background-color: rgb(255, 144, 144);
 }
 
+.isRead.notread:hover {
+  background-color: var(--hover-red);
+}
+
 .isRead.read {
   background-color: lightgreen;
+}
+
+.isRead.read:hover {
+  background-color: var(--hover-green);
 }
 
 .isRead.notread,
@@ -566,4 +599,10 @@ h3 {
 .remove {
   border-radius: 12px;
   border: none;
+  background-color: var(--lavender-gray);
+}
+
+.remove:hover {
+  background-color: var(--blue-bell);
+  cursor: pointer;
 }

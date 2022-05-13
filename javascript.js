@@ -8,10 +8,7 @@ const alreadyRead = document.querySelector('#isread')
 const submitBtn = document.querySelector('.submit')
 const removeBookBtn = document.querySelector('.remove')
 
-const HP = new Book('Harry Potter: Prisoner of Azkaban', 'J.K. Rowling', 317, true)
-const LOTR = new Book('Lord of the Rings', 'J.R.R. Tolkien', 347, false)
-
-let myLibrary = [HP, LOTR]
+let myLibrary = []
 
 function Book(title, author, numPages, isRead = false) {
   this.title = title
@@ -29,6 +26,7 @@ function addTolibrary(book) {
   displayCards(myLibrary)
 }
 
+//Loops through and displays each book in myLibrary as a card
 function displayCards(array) {
   let content = document.querySelector('.content')
   let bookIndex = 0
@@ -66,6 +64,7 @@ function displayCards(array) {
       displayCards(myLibrary);
     })
 
+    // Toggles read status of associated book object
     document.getElementById(isReadID).addEventListener('click', (ev) => {
       myLibrary[ev.target.value].toggleRead()
       displayCards(myLibrary)
@@ -80,15 +79,30 @@ function clearFormValues() {
   alreadyRead.checked = false
 }
 
-function findIndex(bookTitle) {
-  let index = myLibrary.findIndex(book => book.title == bookTitle)
-  return index
+//Adds red border around each invalid required form field
+//Probably too many ifs...
+function validateForm() {
+  invalid = []
+  if (title.value == "") {
+    invalid.push(title)
+  }
+  if (author.value == "") {
+    invalid.push(author)
+  }
+  if (numpages.value == "") {
+    invalid.push(numpages)
+  }
+  if (invalid.length !== 0) {
+  invalid.forEach(ele => ele.style.border = "1px solid red")
+  alert('Please fill out all fields.')
+  return
+  }
 }
 
-function removeBook(book) {
-  let index = findIndex(book)
-  myLibrary.splice(index, 1)
-  displayCards();
+//Removes red border from previous invalid but now valid form fields
+function clearFormStyling() {
+  fields = [title, author, numpages]
+  fields.forEach(ele => ele.style.border = "none")
 }
 
 newBookBtn.addEventListener('click', () => {
@@ -101,6 +115,11 @@ closeBtn.addEventListener('click', () => {
 })
 
 submitBtn.addEventListener('click', () => {
+  clearFormStyling()
+  if (title.value == "" || author.value == "" || numpages.value == "") {
+    validateForm()
+    return
+  }
   let book = new Book(title.value, author.value, numpages.value)
   if (alreadyRead.checked) {
     book.isRead = true
@@ -108,11 +127,5 @@ submitBtn.addEventListener('click', () => {
   addTolibrary(book)
   bookForm.classList.remove('active')
 })
-
-// document.getElementById(buttonId).onclick = function(ev) {
-//   let removedBook = ev.target.parentNode
-//   document.querySelector('.content').removeChild(removedBook)
-//   displayCards()
-// }
 
 displayCards(myLibrary)
