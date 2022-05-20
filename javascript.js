@@ -10,15 +10,17 @@ const removeBookBtn = document.querySelector('.remove')
 
 let myLibrary = []
 
-function Book(title, author, numPages, isRead = false) {
-  this.title = title
-  this.author = author
-  this.numPages = numPages
-  this.isRead = isRead
-}
+class Book {
+  constructor(title, author, numPages, isRead = false) {
+    this.title = title
+    this.author = author
+    this.numPages = numPages
+    this.isRead = isRead   
+  }
 
-Book.prototype.toggleRead = function() {
-  this.isRead = !this.isRead
+  toggleRead() {
+    this.isRead = !this.isRead
+  }
 }
 
 function addTolibrary(book) { 
